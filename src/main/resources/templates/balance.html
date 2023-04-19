@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Balance</title>
+    <meta name="description" content="Exchange">
+    <meta name="author" content="-">
+    <meta property="og:title" content="Exchange">
+    <link th:href="@{/cssandjs/main.css}" rel="stylesheet" />
+</head>
+
+</head>
+<body>
+<div class="MainBox">
+    <div th:insert="menu :: copy"></div>
+
+    <div class="tableBox">
+        <table class="table"   border="8" cellpadding="5" style="border-collapse: collapse; border: 6px solid #FFAC3E;">
+            <caption>Account Balance</caption>
+            <thead>
+            <tr>
+                <th>Currency</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${balances.isEmpty()}">
+                <td colspan="2"> No balances available </td>
+            </tr>
+            <tr th:each="balance : ${balances}">
+                <td><span th:text="${balance.getCurrency().getTicker()}"> Currency </span></td>
+                <td><span th:text="${balance.getAmount()}"> Amount </span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
